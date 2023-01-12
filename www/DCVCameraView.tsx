@@ -67,8 +67,16 @@ export class DCVCameraView {
             setTimeout(this.elementDidChange.bind(this), 300);
             setTimeout(this.elementDidChange.bind(this), 1000);
         });
+        this.createDceView();
     }
 
+    createDceView() {
+        exec(null, null, 'DynamsoftCordovaPlugin', 'createDceView', null);
+    }
+
+    /**
+    * Bind the instance of DCVCameraView to an HTML element.
+    */
     bindToHtmlElement(element: HTMLElement) {
         this.htmlElement = element;
         this.elementDidChange()
@@ -76,10 +84,17 @@ export class DCVCameraView {
         exec(null, null, 'DynamsoftCordovaPlugin', 'bindCameraViewToElement', [this.htmlElementProp]);
     }
 
+    /**
+    * Set whether to display overlays to highlight the decoded barcodes.
+    */
     setOverlayVisible(isVisible : boolean) {
         exec(null, null, 'DynamsoftCordovaPlugin', 'setOverlayVisible', [isVisible]);
     }
 
+    /**
+    * Set the torch button with a TorchButton object.
+    * You can configure the position, images and visibility of the button.
+    */
     setTorchButton(torchButton : TorchButton) {
         exec(null, null, 'DynamsoftCordovaPlugin', 'setTorchButton', [torchButton]);
     }
